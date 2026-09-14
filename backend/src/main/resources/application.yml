@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cb-ondevice-ai-backend
+
+# 위험 판정 엔진 파라미터 (튜닝용)
+risk:
+  fall:
+    # 수직 가속도 임계값 (px/frame^2). 골반(hip) 중심의 하강 가속도가 이 값을 넘으면 낙상 후보
+    vertical-accel-threshold: 8.0
+    # 낙상 판정에 필요한 연속 프레임 수
+    min-consecutive-frames: 3
+  roi:
+    # ROI 침범 상태머신: 이 프레임 수 이상 구역 안에 머무르면 '침범'으로 확정
+    dwell-frames: 15
+  replay:
+    # 리플레이 링버퍼 크기 (초 * fps). 5초 * 30fps = 150
+    buffer-frames: 150
+
+logging:
+  level:
+    io.cbai.ondevice: DEBUG
